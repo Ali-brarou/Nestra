@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#include <nes/rom.h> 
+
 
 #ifdef __cplusplus
 }
