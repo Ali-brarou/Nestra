@@ -1,16 +1,10 @@
 #ifndef NES_DISASM_H
 #define NES_DISASM_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <nes/rom.h> 
 
+void nes_disas_init(void); 
 
-#ifdef __cplusplus
-}
-#endif
-
+size_t nes_disas(const uint8_t* code); 
 
 #endif

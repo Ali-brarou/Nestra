@@ -1,19 +1,33 @@
-CC 		:= gcc
-CFLAGS 	:= -Wall -Wextra -Iinclude 
+CC      := gcc
+CFLAGS  := -Wall -Wextra -Iinclude
 
 SRC_DIR := src
 BIN_DIR := bin
 OBJ_DIR := build
 
-DIS 	:= $(BIN_DIR)/nesdisasm
-DIS_SRC	:= $(wildcard $(SRC_DIR)/disasm/*.c)
+TARGETS := nes-disasm nes-asm nes-emul
 
-all: $(DIS)
+CORE_SRC := $(wildcard $(SRC_DIR)/core/*.c)
+DIS_SRC  := $(CORE_SRC) $(wildcard $(SRC_DIR)/disasm/*.c)
+ASM_SRC  := $(CORE_SRC) $(wildcard $(SRC_DIR)/asm/*.c)
+EMU_SRC  := $(CORE_SRC) $(wildcard $(SRC_DIR)/emul/*.c)
 
-$(DIS): $(DIS_SRC)
+all: $(addprefix $(BIN_DIR)/, $(TARGETS))
+
+$(BIN_DIR)/nes-disasm: $(DIS_SRC)
 	@mkdir -p $(BIN_DIR)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -DNES_DISASSEMBLER $^ -o $@
 
-clean: 
+$(BIN_DIR)/nes-asm: $(ASM_SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) -DNES_ASSEMBLER $^ -o $@
+
+$(BIN_DIR)/nes-emul: $(EMU_SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) -DNES_EMULATOR $^ -o $@
+
+# Clean up
+clean:
 	rm -rf $(BIN_DIR)
+
 .PHONY: all clean

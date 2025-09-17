@@ -1,9 +1,9 @@
 #ifndef NES_COMMON_H
 
-#ifdef __cplusplus
-# define NES_STATIC_ASSERT(cond, msg) static_assert(cond, msg)
-#else 
-# define NES_STATIC_ASSERT(cond, msg) _Static_assert(cond, msg)
-#endif
+#include <assert.h>
+#include <stdint.h>
+#include <stdbool.h>
+
+#define NES_STATIC_ASSERT(cond, msg) _Static_assert(cond, msg)
 
 #endif
