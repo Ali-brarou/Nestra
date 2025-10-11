@@ -1,0 +1,5 @@
+- Load PRG-ROM into memory.
+- Fill nes_op_table with all 256 opcodes.
+- Implement instruction fetch-decode-execute loop (nes_cpu_step)
+- Implement all addressing modes.
+- Implement draw/log hooks.

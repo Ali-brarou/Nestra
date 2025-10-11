@@ -38,6 +38,11 @@ typedef struct nes_opcode {
     uint8_t cycles;
 } nes_opcode_t; /* nes_opcode will be zeroed if it's illegal */ 
 
-void nes_op_init(nes_opcode_t *op_table); /* must be called before using opcode table */ 
+extern const nes_opcode_t nes_op_table[NES_OP_COUNT];
+
+NES_STATIC_ASSERT(
+    sizeof(nes_op_table)/sizeof(nes_opcode_t) == 256,
+    "op_table must be 256 elements"
+);
 
 #endif

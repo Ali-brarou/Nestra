@@ -19,7 +19,7 @@ typedef struct nes_rom_header {
     uint8_t flags9; 
     uint8_t flags10; 
     uint8_t zero[NES_ZERO_SIZE];  /* unused */ 
-} nes_rom_header_t; /* TODO: Not sure if packed attribute is needed; all fields are 1 byte */ 
+} nes_rom_header_t; 
 
 NES_STATIC_ASSERT(sizeof(nes_rom_header_t) == 16, "NES header must be 16 bytes");
 
@@ -27,21 +27,6 @@ typedef struct nes_rom {
     nes_rom_header_t header; 
 } nes_rom; 
 
-static inline bool nes_header_validate(nes_rom_header_t* hdr) 
-{
-    assert(hdr); 
-
-    if(memcmp(hdr->signature, NES_SIGN, NES_SIGN_SIZE))
-        return false; 
-
-    for (size_t i = 0; i < NES_ZERO_SIZE; i++) 
-    {
-        if (hdr->zero[i]) return false; 
-    } 
-
-    if (!hdr->prg_pages) return false; 
-
-    return true; 
-}
+bool nes_header_validate(nes_rom_header_t* hdr); 
 
 #endif

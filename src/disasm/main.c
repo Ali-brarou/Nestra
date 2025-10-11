@@ -8,6 +8,5 @@ int main(int argc, char *argv[])
     nes_hooks_t hooks; 
 
     nes_machine_init(&machine, &hooks, NULL); 
-
     return 0; 
 }

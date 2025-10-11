@@ -8,14 +8,14 @@
 typedef struct nes_machine nes_machine_t;
 
 typedef enum nes_status_flag {
-    FLAG_C = 1 << 0,
-    FLAG_Z = 1 << 1,
-    FLAG_I = 1 << 2,
-    FLAG_D = 1 << 3,
-    FLAG_B = 1 << 4,
-    FLAG_UNUSED = 1 << 5,
-    FLAG_V = 1 << 6, 
-    FLAG_N = 1 << 7
+    NES_FLAG_C = 1 << 0,
+    NES_FLAG_Z = 1 << 1,
+    NES_FLAG_I = 1 << 2,
+    NES_FLAG_D = 1 << 3,
+    NES_FLAG_B = 1 << 4,
+    NES_FLAG_UNUSED = 1 << 5,
+    NES_FLAG_V = 1 << 6, 
+    NES_FLAG_N = 1 << 7
 } nes_status_flag_t; 
 
 typedef struct nes_cpu {
